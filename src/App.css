@@ -1,0 +1,93 @@
+.App{
+width: 90%;
+margin: 25px;
+height: 500px;
+}
+.available-header{
+  background-color: whitesmoke;
+  margin-left: 50px;
+}
+.dropdown{
+  padding: 10px 25px;
+  font-size: 25px;
+  margin-left: 50px;
+}
+.options{
+  padding: 10px 25px;
+  font-size: 25px;
+}
+.options:hover{
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+.main-container{
+ display: grid;
+ grid-template-columns: repeat(5,1fr);
+ gap: 20px;
+}
+.item-container{
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.product-img>img{
+  width: 350px;
+  height: 350px;
+}
+img:hover{
+  cursor: pointer;
+}
+
+.popup{
+  width: 600px;
+  min-height: 400px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+  color: black;
+
+  position: absolute;
+  top: 325px;
+  left: 500px;
+  margin:100px;
+  z-index: 10;
+}
+.pop-header{
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.pop-close-btn{
+  width: 75px;
+  height: 25px;
+  background-color: tomato;
+  color: black;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+.pop-close-btn:hover{
+  background-color: rgb(233, 72, 43);
+  height: 30px;
+ 
+}
+.pop-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.popup-img{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 15px;
+}
+
+.pop-description{
+  width: 100%;
+}
