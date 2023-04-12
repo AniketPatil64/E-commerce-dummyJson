@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { Data } from "./components/data";
+import axios from "axios";
 function App() {
-  const data = Data.products;
+const [data,setdata]=useState([])
+  useEffect(()=>{
+    axios.get("https://dummyjson.com/products?limit=50").then((resp)=>{
+    setdata(resp.data.products);
+    }).catch(err=>{
+      console.log("error Occures :", err);
+    })
+  },[data.length])
+ 
   const [popup, setpopup] = useState(false);
   const [popupData, setpopupData] = useState({});
   const [currentPage,setcurrentPage] = useState(1);
@@ -27,7 +35,7 @@ function App() {
   };
   return (
     <div>
-      <div className="App">
+      <div className={`App ${popup} ? "POPUP" :""`}>
       <h1 className="available-header">Available products</h1>
       <select className="dropdown" onChange={handleCarTypeChange}>
       <option className="options" value="all">All</option>
@@ -57,8 +65,8 @@ function App() {
             <img className="popup-img" src={popupData.images[0]} alt="hello"/>
             </div>
             <div className="pop-description">
-            <h5>Description:</h5>
-            {popupData.description}
+            <h3>Description:</h3>
+           <h4> {popupData.description}</h4>
           </div>
           </div>
           
@@ -68,7 +76,7 @@ function App() {
         {getCurrentItems().map((item, index) => {
           return (
             <div key={index} className="item-container">
-              <div>Product name : {item.title}</div>
+              <div>Product : {item.title}</div>
               <div className="product-img">
                 <img
                   className="img-attr"
@@ -86,13 +94,17 @@ function App() {
       {
         getCurrentItems().length > 5 && 
         <div className="counter-btns">
-                  <button onClick={()=>{
+                  <button
+                   className="pop-close-btn"
+                   onClick={()=>{
                     if(currentPage>1){
                       setcurrentPage(currentPage-1)
                     }
                   }}>Prev Page</button>
                   <span>{currentPage} out of {totalPages}</span>
-                  <button onClick={()=>{
+                  <button
+                  className="pop-close-btn"
+                   onClick={()=>{
                     if(currentPage<totalPages){
                       setcurrentPage(currentPage+1)
                     }
